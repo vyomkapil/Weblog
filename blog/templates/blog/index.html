@@ -1,0 +1,70 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block head %}Home{% endblock %}
+{% block content %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url({% static 'img/home-bg.jpg' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>WEBLOG</h1>
+                        <hr class="small">
+                        <span class="subheading">Share Thoughts and Ideas.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="well">
+                    <h4>Blog Search</h4>
+                    <form action="{% url 'blog:search' %}" method="post">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="find">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default" type="button">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.input-group -->
+                </div>
+                {% if latest_post_list %}
+                    {% for post in latest_post_list %}
+                        <div class="post-preview">
+                            <a href="{% url 'blog:detail' post.id %}">
+                                <h2 class="post-title">
+                                    {{post.title}}
+                                </h2>
+                            </a>
+                            <p class="post-meta">Posted by <a href="#">{{post.user.first_name}} {{post.user.last_name}}</a> on {{post.post_date}}</p>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                {% else %}
+                    <p>Oops!! No blog found.</p>
+                {% endif %}
+                <br />
+
+                <!-- Pager -->
+                {% if not flag %}
+                    <ul class="pager">
+                        <li class="next">
+                            <a href="{% url 'blog:all'%}">Show all &rarr;</a>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <hr>
+{% endblock %}

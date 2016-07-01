@@ -1,0 +1,68 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block head %}{{post.title}}{% endblock %}
+{% block content %}
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url({{post.cover_photo.url}})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>{{post.title}}</h1>
+                        <span class="meta">Posted by <a href="#">{{post.user.first_name}} {{post.user.last_name}}</a> on {{post.post_date}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p>{{post.post_text}}</p>
+
+                    <!-- Comments Form -->
+                    <div class="well">
+                        <h4>Leave a Comment:</h4>
+                        <form role="form" action="{% url 'blog:comment' post.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <textarea class="form-control" rows="3" name="txtArea"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+
+                    <hr>
+
+                    <!-- Posted Comments -->
+
+                    <!-- Comment -->
+                    {% if post.comment_set.all %}
+                        {% for comment in post.comment_set.all %}
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{comment.user.first_name}} {{comment.user.last_name}}
+                                        <small>{{comment.comment_date}}</small>
+                                    </h4>
+                                     {{comment.comment_text}}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No Comments are available.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+{% endblock %}

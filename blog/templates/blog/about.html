@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block head %}About Me{% endblock %}
+{% block content %}
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url({% static 'img/vyom.png' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-11 col-lg-offset-3 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1 style="color: white;
+                                    text-shadow:
+                                    -1px -1px 0 #000,
+                                    1px -1px 0 #000,
+                                    -1px 1px 0 #000,
+                                    1px 1px 0 #000;">Hey there, I'm Vyom</h1>
+                        <hr class="small">
+                        <span class="subheading" style="color: white;
+                                                        text-shadow:
+                                                        -1px -1px 0 #000,
+                                                        1px -1px 0 #000,
+                                                        -1px 1px 0 #000,
+                                                        1px 1px 0 #000;">An engineer, a web developer and an unshakable optimist.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>I'm Vyom Kapil. I'm pursuing engineering in computer science from AKGEC, Ghaziabad. I have done some work with python programming language and it's framework Django.</p>
+                <p>I'm a open-hearted, fun loving person with a keen interest in following different sports like football, basketball and many more.</p>
+                <blockquote>I believe that Happiness can be found in simplest of things.</blockquote>
+                <p>I love the little things in life and never take myself too seriously. Laughing with friends and enjoying my family are two of my favorite things.</p>
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+{% endblock %}

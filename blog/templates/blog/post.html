@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block head %}Post{% endblock %}
+{% block content %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url({% static 'img/home-bg.jpg' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Blog</h1>
+                        <hr class="small">
+                        <span class="subheading">A Blogging System by Vyom</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% crispy form %}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+{% endblock %}
